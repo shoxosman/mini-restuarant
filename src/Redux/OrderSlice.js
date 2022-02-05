@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   value: JSON.parse(localStorage.getItem("card")) || [],
   
+  
 };
 const TheCardsSlice = createSlice({
   name: "card",
@@ -20,24 +21,25 @@ const TheCardsSlice = createSlice({
         }
       });
     },
-    Increase_Quantit: (state, action) => {
+    Increase_Quantity: (state, action) => {
         console.log(action.payload);
   
         state.value.forEach((foods, index) => {
-          if (foods.name === action.payload) {
-  
-            state.value[index].count++;
+          if (foods?.name === action.payload) {
+            
+            state.value[index].quantity+=1;
   
           }
         });
       },
+      
       Decrease_Quantity: (state, action) => {
         console.log(action.payload);
   
         state.value.forEach((foods, index) => {
-          if (foods?.name === action.payload &&  state.value[index].count > 1) {
+          if (foods?.name === action.payload &&  state.value[index].quantity > 1) {
             
-            state.value[index].count--;
+            state.value[index].quantity--;
   
           }
         });

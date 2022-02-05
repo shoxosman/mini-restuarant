@@ -27,12 +27,12 @@ const totalItems = orderlist.reduce((result, food) => {
                       <div className='flex row justify-around'> 
                            <button 
                             onClick={() => {
-                           dispatch(Increase_Quantity(food.name)); }}
+                           dispatch(Increase_Quantity(food?.name)); }}
                            className="text-2xl"> +
                             </button> <span  className="text-2xl">{food.quantity}</span>
                            <button  className="text-2xl"
                             onClick={() => {
-                             dispatch(Decrease_Quantity(food.name));}}> -</button>
+                             dispatch(Decrease_Quantity(food?.name));}}>-</button>
                                </div>                
                       
                     
