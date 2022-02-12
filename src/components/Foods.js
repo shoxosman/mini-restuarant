@@ -11,7 +11,6 @@ function Foods() {
     async function getData(){
         const api  =('https://resturant-database-3d62f-default-rtdb.firebaseio.com/Foods.json')
         const result =await fetch(api);
-        console.log(result);
         const getResult = await result.json();
         setData(getResult);
         console.log(getResult)
@@ -36,7 +35,7 @@ function Foods() {
                     <li className="list-none w-6 h-6"><button onClick={() => {
                 dispatch(addToOrderList(val));
              
-              }}> <img src='https://pic.onlinewebfonts.com/svg/img_407396.png' /></button>
+              }}> <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/add-1476-520694.png" srcset="https://cdn.iconscout.com/icon/premium/png-512-thumb/add-1476-520694.png 2x" alt="Add Icon" width="256"></img></button>
            </li>
                 </div>
             </div>

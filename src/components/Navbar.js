@@ -1,12 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import { themeActions } from '../Redux/ThemeSlice'
-import { useSelector ,useDispatch } from 'react-redux'
+import {Link} from 'react-router-dom';
+import { useSelector} from 'react-redux';
+import ThemeBotton from './ThemeButton';
+
 function Navbar() {
-  const isDark = useSelector(state => state.theme.isDark)
+
   const orderlist = useSelector((state) => state.order.value);
-  const dispatch = useDispatch()
-  return <div className={`App ${isDark ? 'dark' : null}`}>
+ 
+  return <div>
       <ul className="flex justify-around">
       <li className="mr-6">
       <Link to="/">
@@ -21,7 +22,7 @@ function Navbar() {
   <Link to="/">Home</Link>
   </li>
   <li className='self-center'>
-  <button onClick={()=>{dispatch(themeActions.toggle())}}>toggle theme</button>
+  <ThemeBotton/>
   </li>
   <li className="mr-6">
   <Link to="/orderlist">
