@@ -1,6 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromOrderList ,Increase_Quantity ,Decrease_Quantity} from "../Redux/OrderSlice"
+import { removeFromOrderList ,Increase_Quantity ,Decrease_Quantity, Replace} from "../Redux/OrderSlice";
+let isFirst=true
 function OrderList() {
   const orderlist = useSelector((state) => state.order.value);
   const dispatch = useDispatch();
@@ -11,7 +13,24 @@ function OrderList() {
 const totalItems = orderlist.reduce((result, food) => {
     return result + food.quantity;
 }, 0);
+useEffect(()=>{
+  fetch("https://resturant-database-3d62f-default-rtdb.firebaseio.com/orderlist.json")
+  .then(async(res)=> {
+    const data = await res.json()
+    dispatch( Replace(data))
+    
+  }
+    )
+  .catch(e=> console.log(e))
+},[])
 
+useEffect(() => {
+  if(!isFirst){ fetch("https://resturant-database-3d62f-default-rtdb.firebaseio.com/orderlist.json", {
+    method: "PUT",
+    body: JSON.stringify(orderlist),
+  }).catch((e) => console.log(e));}
+ isFirst=false
+},[orderlist]);
   return <div>
       {orderlist.map((food, index) => {
               /* totalPrice += food?.price;

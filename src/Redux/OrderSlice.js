@@ -51,10 +51,13 @@ const TheCardsSlice = createSlice({
           }
         });
       },
+      Replace:(state, action)=>{
+        state.value = action.payload
+    },
     
   },
 });
 
 export const { addToOrderList, removeFromOrderList ,Increase_Quantity,
-  Decrease_Quantity, } = TheCardsSlice.actions;
+  Decrease_Quantity, Replace } = TheCardsSlice.actions;
 export default TheCardsSlice.reducer;
